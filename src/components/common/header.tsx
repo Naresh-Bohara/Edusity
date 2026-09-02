@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import logo from "../../assets/images/logo.png";
 
 const navLinks = [
-  { label: "Home", href: "#" },
-  { label: "Program", href: "#" },
-  { label: "About Us", href: "#" },
-  { label: "Campus", href: "#" },
-  { label: "Testimonials", href: "#" },
+  { label: "Home", href: "#home" },
+  { label: "Program", href: "#program" },
+  { label: "About Us", href: "#about" },
+  { label: "Campus", href: "#campus" },
+  { label: "Testimonials", href: "#testimonials" },
 ];
 
 const DesktopNav = ({ links, onLinkClick }) => {
@@ -17,15 +17,21 @@ const DesktopNav = ({ links, onLinkClick }) => {
           key={link.label}
           href={link.href}
           className="text-sm font-semibold leading-6 p-2 text-white hover:text-indigo-400 transition-colors"
-          onClick={onLinkClick}
+          onClick={(e) => {
+            e.preventDefault();
+            onLinkClick(link.href);
+          }}
         >
           {link.label}
         </a>
       ))}
       <a
-        href="#"
+        href="#contact"
         className="text-sm font-semibold leading-6 text-black bg-gray-50 hover:bg-gray-100 px-5 py-2 rounded-full transition-colors"
-        onClick={onLinkClick}
+        onClick={(e) => {
+          e.preventDefault();
+          onLinkClick("#contact");
+        }}
       >
         Contact Us
       </a>
@@ -53,15 +59,21 @@ const MobileNav = ({ isOpen, links, onLinkClick }) => {
               key={link.label}
               href={link.href}
               className="block rounded-lg px-4 py-3 text-base font-semibold text-white hover:bg-white/10 transition-colors"
-              onClick={onLinkClick}
+              onClick={(e) => {
+                e.preventDefault();
+                onLinkClick(link.href);
+              }}
             >
               {link.label}
             </a>
           ))}
           <a
-            href="#"
+            href="#contact"
             className="block rounded-full bg-indigo-50 hover:bg-indigo-200 px-4 py-3 text-base font-semibold text-black transition-colors mt-4 w-fit"
-            onClick={onLinkClick}
+            onClick={(e) => {
+              e.preventDefault();
+              onLinkClick("#contact");
+            }}
           >
             Contact Us
           </a>
@@ -112,8 +124,22 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleLinkClick = () => {
+  const handleLinkClick = (href) => {
     setIsMenuOpen(false);
+    
+    // Smooth scroll to section
+    const targetId = href.replace("#", "");
+    const targetElement = document.getElementById(targetId);
+    
+    if (targetElement) {
+      const headerHeight = 64; // h-16 = 64px
+      const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+      
+      window.scrollTo({
+        top: targetPosition,
+        behavior: "smooth",
+      });
+    }
   };
 
   const toggleMenu = () => {
@@ -128,7 +154,10 @@ const Header = () => {
     >
       <nav className="mx-auto flex max-w-7xl w-full items-center justify-between px-6 lg:px-8">
         <div className="flex lg:flex-1">
-          <a href="#">
+          <a href="#home" onClick={(e) => {
+            e.preventDefault();
+            handleLinkClick("#home");
+          }}>
             <img src={logo} alt="Edusity" className="h-9" />
           </a>
         </div>
