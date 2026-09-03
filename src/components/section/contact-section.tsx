@@ -28,7 +28,7 @@ const ContactSection = () => {
                 Send a message
                 <img src={messageIcon} alt="Message" className="w-6 h-6" />
               </h3>
-              <p className="text-[#676767] text-sm leading-relaxed mb-6">
+              <p className="text-[#676767] text-base leading-[21px] mb-6">
                 Feel free to reach out through contact form or find our contact
                 information below. Your feedback, questions, and suggestions are
                 important to us as we strive to provide exceptional service to
@@ -123,7 +123,7 @@ const ContactSection = () => {
               {/* Submit Button */}
               <button
                 type="submit"
-                className="mt-2 bg-[#212ea0] hover:bg-[#1a2386] text-white font-semibold py-3 px-6 rounded-full transition-all duration-300 hover:scale-[1.02] shadow-md hover:shadow-lg text-sm"
+                className="mt-2 bg-[#212ea0] hover:bg-[#1a2386] text-white font-normal py-3 px-6 rounded-full transition-all duration-300 hover:scale-[1.02] shadow-md hover:shadow-lg text-sm"
               >
                 Submit Now →
               </button>

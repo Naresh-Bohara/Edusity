@@ -73,7 +73,7 @@ const TestimonialsSection = () => {
 
   const currentItems = testimonials.slice(
     currentIndex * itemsPerPage,
-    (currentIndex + 1) * itemsPerPage
+    (currentIndex + 1) * itemsPerPage,
   );
 
   return (
@@ -84,13 +84,13 @@ const TestimonialsSection = () => {
           <p className="text-[15px] font-semibold text-[#212ea0] uppercase tracking-wider">
             TESTIMONIALS
           </p>
-          <h2 className="text-[32px] font-bold  text-[#000f38] mt-2">
+          <h2 className="text-[32px] mb-6 font-bold text-[#000f38] leading-normal mt-2">
             What Student Says
           </h2>
         </div>
 
         {/* Testimonials Carousel with Side Arrows */}
-        <div className="relative mt-12">
+        <div className="relative mt-22">
           <div className="flex items-center gap-2 md:gap-4">
             {/* Left Arrow */}
             <button
@@ -111,7 +111,7 @@ const TestimonialsSection = () => {
                 {currentItems.map((item) => (
                   <div
                     key={item.id}
-                    className="bg-white rounded-2xl shadow-lg p-6 md:p-8 h-64 md:h-72"
+                    className="bg-white rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.15)] hover:shadow-[0_15px_50px_rgba(0,0,0,0.2)] transition-shadow duration-300 p-6 md:p-8 h-56 md:h-64"
                   >
                     <div className="flex items-center gap-4 mb-4">
                       <img
@@ -123,12 +123,12 @@ const TestimonialsSection = () => {
                         <h3 className="text-base md:text-lg font-bold text-[#000f38]">
                           {item.name}
                         </h3>
-                        <p className="text-xs md:text-sm text-gray-500">
+                        <p className="text-xs md:text-sm text-gray-500 font-normal">
                           {item.location}
                         </p>
                       </div>
                     </div>
-                    <p className="text-sm md:text-base text-gray-600 leading-relaxed line-clamp-4">
+                    <p className="text-base text-[#676767] leading-[22px] font-normal line-clamp-4">
                       {item.text}
                     </p>
                   </div>

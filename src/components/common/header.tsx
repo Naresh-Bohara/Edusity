@@ -16,7 +16,7 @@ const DesktopNav = ({ links, onLinkClick }) => {
         <a
           key={link.label}
           href={link.href}
-          className="text-sm font-semibold leading-6 p-2 text-white hover:text-indigo-400 transition-colors"
+          className="text-sm font-normal leading-6 p-2 text-white hover:text-indigo-400 transition-colors"
           onClick={(e) => {
             e.preventDefault();
             onLinkClick(link.href);
@@ -27,7 +27,7 @@ const DesktopNav = ({ links, onLinkClick }) => {
       ))}
       <a
         href="#contact"
-        className="text-sm font-semibold leading-6 text-black bg-gray-50 hover:bg-gray-100 px-5 py-2 rounded-full transition-colors"
+        className="text-sm font-normal leading-6 text-black bg-gray-50 hover:bg-gray-100 px-5 py-2 rounded-full transition-colors"
         onClick={(e) => {
           e.preventDefault();
           onLinkClick("#contact");
@@ -58,7 +58,7 @@ const MobileNav = ({ isOpen, links, onLinkClick }) => {
             <a
               key={link.label}
               href={link.href}
-              className="block rounded-lg px-4 py-3 text-base font-semibold text-white hover:bg-white/10 transition-colors"
+              className="block rounded-lg px-4 py-3 text-base font-normal text-white hover:bg-white/10 transition-colors"
               onClick={(e) => {
                 e.preventDefault();
                 onLinkClick(link.href);
@@ -69,7 +69,7 @@ const MobileNav = ({ isOpen, links, onLinkClick }) => {
           ))}
           <a
             href="#contact"
-            className="block rounded-full bg-indigo-50 hover:bg-indigo-200 px-4 py-3 text-base font-semibold text-black transition-colors mt-4 w-fit"
+            className="block rounded-full bg-indigo-50 hover:bg-indigo-200 px-4 py-3 text-base font-normal text-black transition-colors mt-4 w-fit"
             onClick={(e) => {
               e.preventDefault();
               onLinkClick("#contact");
@@ -126,15 +126,17 @@ const Header = () => {
 
   const handleLinkClick = (href) => {
     setIsMenuOpen(false);
-    
-    // Smooth scroll to section
+
     const targetId = href.replace("#", "");
     const targetElement = document.getElementById(targetId);
-    
+
     if (targetElement) {
-      const headerHeight = 64; // h-16 = 64px
-      const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
-      
+      const headerHeight = 64;
+      const targetPosition =
+        targetElement.getBoundingClientRect().top +
+        window.pageYOffset -
+        headerHeight;
+
       window.scrollTo({
         top: targetPosition,
         behavior: "smooth",
@@ -147,17 +149,20 @@ const Header = () => {
   };
 
   return (
-    <header 
+    <header
       className={`fixed top-0 left-0 w-full z-20 h-16 flex items-center transition-all duration-500 ease-in-out ${
         isScrolled ? "bg-[#212ea0] shadow-lg" : "bg-transparent"
       }`}
     >
       <nav className="mx-auto flex max-w-7xl w-full items-center justify-between px-6 lg:px-8">
         <div className="flex lg:flex-1">
-          <a href="#home" onClick={(e) => {
-            e.preventDefault();
-            handleLinkClick("#home");
-          }}>
+          <a
+            href="#home"
+            onClick={(e) => {
+              e.preventDefault();
+              handleLinkClick("#home");
+            }}
+          >
             <img src={logo} alt="Edusity" className="h-9" />
           </a>
         </div>
@@ -166,10 +171,10 @@ const Header = () => {
         <HamburgerButton isOpen={isMenuOpen} onClick={toggleMenu} />
       </nav>
 
-      <MobileNav 
-        isOpen={isMenuOpen} 
-        links={navLinks} 
-        onLinkClick={handleLinkClick} 
+      <MobileNav
+        isOpen={isMenuOpen}
+        links={navLinks}
+        onLinkClick={handleLinkClick}
       />
     </header>
   );
